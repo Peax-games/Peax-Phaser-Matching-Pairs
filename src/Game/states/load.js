@@ -23,18 +23,18 @@ export default function loadState() {
 
             this.load.setPreloadSprite(this.preloadBar);
 
-            this.load.image('title', 'assets/title.png');
-            this.load.atlas('spriteset', 'assets/spritesheet.png', 'assets/spritesheet.jsona');
-            this.load.spritesheet('play', 'assets/play.png', 400, 110);
-            this.load.spritesheet('back', 'assets/back.png', 400, 110);
-            this.load.spritesheet('musicbutton', 'assets/music.png', 400, 110);
-            this.load.bitmapFont('font', 'assets/fnt2_0.png', 'assets/fnt2.fnt');
-            this.load.audio('music', ['assets/music.mp3', 'assets/music.ogg', 'assets/music.wav', 'assets/music.m4a']);
-            this.load.audio('blip', ['assets/blip.mp3', 'assets/blip.ogg', 'assets/blip.wav', 'assets/blip.m4a']);
+            this.load.image('title', 'img/title.png');
+            this.load.atlas('spriteset', 'img/spritesheet.png', 'img/spritesheet.jsona');
+            this.load.spritesheet('play', 'img/play.png', 400, 110);
+            this.load.spritesheet('back', 'img/back.png', 400, 110);
+            this.load.spritesheet('musicbutton', 'img/music.png', 400, 110);
+            // this.load.bitmapFont('font', 'img/fnt2_0.png', 'img/fnt2.fnt');
+            // this.load.audio('music', ['assets/music.mp3', 'assets/music.ogg', 'assets/music.wav', 'assets/music.m4a']);
+            // this.load.audio('blip', ['assets/blip.mp3', 'assets/blip.ogg', 'assets/blip.wav', 'assets/blip.m4a']);
 
         },
         create: function () {
-            this.game.state.start('menu')
+            this.game.state.start('playTwo')
         }
 
     }

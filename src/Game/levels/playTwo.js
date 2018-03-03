@@ -1,4 +1,7 @@
-export default function playTwo() {
+export default function playTwo(game) {
+    var score = 0;
+    var clicks = 0;
+    var playmusic = true;
     return {
         create: function () {
 
@@ -25,9 +28,9 @@ export default function playTwo() {
 
             this.blipsound = this.add.audio('blip');
 
-            this.timetext = this.add.bitmapText(this.world.centerX, 10, 'font', '0', 30);
+            this.timetext = game.add.text(this.world.centerX, 10, 'font', {font: '30px Arial, fill: #fff'});
             this.timetext.x = this.world.centerX - this.timetext.textWidth / 2;
-            this.time.events.loop(Phaser.Timer.SECOND, this.updateScore, this);
+            this.time.events.loop(window.Phaser.Timer.SECOND, this.updateScore, this);
 
             this.backButton = this.add.button(10, this.world.height - 5, 'back', this.startGame, this, 1, 0, 2);
             this.backButton.scale.setTo(0.4, 0.4);
@@ -64,7 +67,7 @@ export default function playTwo() {
         },
 
         nextLevel: function () {
-            this.time.events.add(Phaser.Timer.SECOND, function () {
+            this.time.events.add(window.Phaser.Timer.SECOND, function () {
                 this.str = (this.level + 1) + 'x2';
                 if (this.level == 6) {
                     score = this.totaltime;
@@ -98,12 +101,12 @@ export default function playTwo() {
         openShape: function (a) {
             // console.log(a.no);
             this.blipsound.play();
-            this.totalclicks++;
+            this.totalclicks+=1;
             var win = false;
-            var out_tween = this.add.tween(a).to({ alpha: 0 }, 100, Phaser.Easing.Sinusoidal.Out, true);
+            var out_tween = this.add.tween(a).to({ alpha: 0 }, 100, window.Phaser.Easing.Sinusoidal.Out, true);
             var in_tween = function () {
                 a.frameName = 'shape' + this.solution[a.no] + '.png';
-                this.add.tween(a).to({ alpha: 1 }, 10, Phaser.Easing.Sinusoidal.In, true);
+                this.add.tween(a).to({ alpha: 1 }, 10, window.Phaser.Easing.Sinusoidal.In, true);
                 if (this.toggle) {
                     this.shape1 = a;
                     this.toggle = false;
@@ -117,13 +120,13 @@ export default function playTwo() {
                     // }
                     // else{
                     if (this.shape1.frameName != this.shape2.frameName) {
-                        var temp_tween1 = this.add.tween(this.shape1).to({ alpha: 0 }, 100, Phaser.Easing.Sinusoidal.Out, true);
-                        var temp_tween2 = this.add.tween(this.shape2).to({ alpha: 0 }, 100, Phaser.Easing.Sinusoidal.Out, true);
+                        var temp_tween1 = this.add.tween(this.shape1).to({ alpha: 0 }, 100, window.Phaser.Easing.Sinusoidal.Out, true);
+                        var temp_tween2 = this.add.tween(this.shape2).to({ alpha: 0 }, 100, window.Phaser.Easing.Sinusoidal.Out, true);
                         temp_tween2.onComplete.add(function () {
                             this.shape1.frameName = 'covershape.png';
                             this.shape2.frameName = 'covershape.png';
-                            this.add.tween(this.shape1).to({ alpha: 1 }, 100, Phaser.Easing.Sinusoidal.Out, true);
-                            this.add.tween(this.shape2).to({ alpha: 1 }, 100, Phaser.Easing.Sinusoidal.Out, true);
+                            this.add.tween(this.shape1).to({ alpha: 1 }, 100, window.Phaser.Easing.Sinusoidal.Out, true);
+                            this.add.tween(this.shape2).to({ alpha: 1 }, 100, window.Phaser.Easing.Sinusoidal.Out, true);
                             this.shape1.inputEnabled = true;
                         }, this);
                     }
@@ -163,7 +166,7 @@ export default function playTwo() {
                         this.shapes[this.shapeindex] = this.add.sprite(this.world.centerX - 60 + 120 * j, this.world.centerY - 60 + 120 * i, 'spriteset');
                         this.shapes[this.shapeindex].frameName = 'covershape.png';
                         this.shapes[this.shapeindex].anchor.setTo(0.5, 0.5);
-                        this.shapeindex++;
+                        this.shapeindex+=1;
                     }
                 }
                     break;
@@ -172,7 +175,7 @@ export default function playTwo() {
                         this.shapes[this.shapeindex] = this.add.sprite(this.world.centerX - 120 + 120 * j, this.world.centerY - 60 + 120 * i, 'spriteset');
                         this.shapes[this.shapeindex].frameName = 'covershape.png';
                         this.shapes[this.shapeindex].anchor.setTo(0.5, 0.5);
-                        this.shapeindex++;
+                        this.shapeindex+=1;
                     }
                 }
                     break;
@@ -181,7 +184,7 @@ export default function playTwo() {
                         this.shapes[this.shapeindex] = this.add.sprite(this.world.centerX - 60 + 120 * j, this.world.centerY - 190 + 120 * i, 'spriteset');
                         this.shapes[this.shapeindex].frameName = 'covershape.png';
                         this.shapes[this.shapeindex].anchor.setTo(0.5, 0.5);
-                        this.shapeindex++;
+                        this.shapeindex+=1;
                     }
                 }
                     break;
@@ -190,13 +193,13 @@ export default function playTwo() {
                         this.shapes[this.shapeindex] = this.add.sprite(this.world.centerX - 120 + 120 * j, this.world.centerY - 190 + 120 * i, 'spriteset');
                         this.shapes[this.shapeindex].frameName = 'covershape.png';
                         this.shapes[this.shapeindex].anchor.setTo(0.5, 0.5);
-                        this.shapeindex++;
+                        this.shapeindex+=1;
                     }
                 }
                     this.shapes[this.shapeindex] = this.add.sprite(this.world.centerX, this.world.centerY + 170, 'spriteset');
                     this.shapes[this.shapeindex].frameName = 'covershape.png';
                     this.shapes[this.shapeindex].anchor.setTo(0.5, 0.5);
-                    this.shapeindex++;
+                    this.shapeindex+=1;
                     break;
                 case '6x2': for (var i = 0; i < 4; i++) {
                     for (var j = 0; j < 3; j++) {
@@ -218,13 +221,13 @@ export default function playTwo() {
                 this.shapes[i].events.onInputDown.add(this.openShape, this);
 
                 this.shapes[i].alpha = 0;
-                this.add.tween(this.shapes[i]).to({ alpha: 1 }, 1000, Phaser.Easing.Sinusoidal.Out, true);
+                this.add.tween(this.shapes[i]).to({ alpha: 1 }, 1000, window.Phaser.Easing.Sinusoidal.Out, true);
             }
             for (var i = 0; i < this.shapes.length; i = i + 2) {
                 this.solution[i] = i / 2 + 1;
                 this.solution[i + 1] = i / 2 + 1;
             }
-            this.math.shuffleArray(this.solution);
+           window.Phaser.ArrayUtils.shuffle(this.solution);
             console.log(this.solution);
         }
     }

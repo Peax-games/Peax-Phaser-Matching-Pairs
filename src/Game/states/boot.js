@@ -11,14 +11,14 @@ export default function bootState(){
     
             if (this.game.device.desktop)
             {
-                this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+                this.scale.scaleMode = window.Phaser.ScaleManager.SHOW_ALL;
     
                 this.scale.pageAlignHorizontally = true;
             }
             else
             {
                
-                this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+                this.scale.scaleMode = window.Phaser.ScaleManager.SHOW_ALL;
                 this.scale.minWidth = 150;
                 this.scale.minHeight = 250;
                 this.scale.maxWidth = 600;
@@ -27,7 +27,7 @@ export default function bootState(){
                 this.scale.pageAlignHorizontally = true;
             }
     
-            this.scale.setScreenSize(true);
+            // this.scale.setScreenSize(true);
             this.state.start('load');
     
         }
